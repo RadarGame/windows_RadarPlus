@@ -1,0 +1,73 @@
+﻿<Window x:Class="RadarGame.UI.Windows.RadarGameMessageBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:RadarGame.UI.Controls"
+        mc:Ignorable="d"
+        Title="RadarGameMessageBox"
+        ResizeMode="NoResize"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource MessageBoxStyle}"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <controls:MessageBoxDialogHeaderControl
+            x:Name="MessageHeader"
+            Grid.ColumnSpan="5"
+            CanResize="false" />
+        <TextBlock
+            x:Name="MainTextBlock"
+            Grid.Row="1"
+            Margin="10"
+            TextWrapping="Wrap" />
+        <StackPanel
+            Grid.Row="50"
+            Grid.ColumnSpan="10"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <Button
+                x:Name="OkButton"
+                Width="100"
+                Height="25"
+                Margin="5"
+                Click="Ok_Click"
+                Content="Ok"
+                IsDefault="True"
+                Visibility="Collapsed" />
+            <Button
+                x:Name="YesButton"
+                Width="100"
+                Height="25"
+                Margin="5"
+                Click="Yes_Click"
+                Content="Yes"
+                IsDefault="True"
+                Visibility="Collapsed" />
+            <Button
+                x:Name="NoButton"
+                Width="100"
+                Height="25"
+                Margin="5"
+                Click="No_Click"
+                Content="No"
+                IsCancel="True"
+                Visibility="Collapsed" />
+            <Button
+                x:Name="CancelButton"
+                Width="100"
+                Height="25"
+                Margin="5"
+                Click="Cancel_Click"
+                Content="Cancel"
+                IsCancel="True"
+                Visibility="Collapsed" />
+        </StackPanel>
+    </Grid>
+</Window>

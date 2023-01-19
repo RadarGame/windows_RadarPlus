@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Style/Colors.xaml"/>
+        <ResourceDictionary Source="Style/ToggleButtonStyles/DNSToggleButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/TabControlStyles/BaseTabControlStyle.xaml"/>
+        <ResourceDictionary Source="Style/WindowStyles/MainWindowStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/HeadeerButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/GradientButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/MainButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/PowerButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/ImageButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/NeonButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/RoundButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/DNSButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ButtonStyles/RadarButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/ToolTipStyle.xaml"/>
+        <ResourceDictionary Source="Assests/PathAndGeometries.xaml"/>
+        <ResourceDictionary Source="Style/ToggleButtonStyles/PathImageToggleButtonStyle.xaml"/>
+        <ResourceDictionary Source="Style/CheckBoxStyles/BaseCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="Style/CheckBoxStyles/SlidingCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="Style/CheckBoxStyles/LoginCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="Style/CheckBoxStyles/ProtocolsCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="Style/CustomStyle/LeftSlidingControlStyle.xaml"/>
+        <ResourceDictionary Source="Style/CheckBoxStyles/RadarDnsCheckBoxStyle.xaml"/>
+        <ResourceDictionary Source="Style/ComboBoxStyles/RightSideComboBoxStyle.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

@@ -1,0 +1,16 @@
+﻿<Application x:Class="RadarGame.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:converters="clr-namespace:RadarGame.UI.Converters"
+             Exit="Application_Exit">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/RadarGame.Theme;component/Theme.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <converters:InvertBooleanConverter x:Key="InvertBooleanConverter"/>
+            <converters:ProtocolTypeToIconConverter x:Key="ProtocolTypeToIconConverter"/>
+            <converters:ServerStatusToItemAbilityConverter x:Key="ServerStatusToItemAbilityConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

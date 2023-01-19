@@ -1,0 +1,97 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RadarGame.Theme.Style">
+    <Color x:Key="MoreDarkPurpleColor">#610d88</Color>
+    <Color x:Key="DarkPurpleColor">#8713bd</Color>
+    <Color x:Key="PurpleColor">#AA14F0</Color>
+    <Color x:Key="ButtonPurpleColor">#b413ff</Color>
+    <Color x:Key="LightPurpleColor">#BC8CF2</Color>
+    <Color x:Key="MoreDarkRadarGreyColor">#292d33</Color>
+    <Color x:Key="DarkRadarGreyColor">#474d57</Color>
+    <Color x:Key="RadarGreyColor">#EEEEEE</Color>
+    <Color x:Key="ButtonBlueColor">#4978fc</Color>
+    <Color x:Key="MainLightBackgroundColor">#4735a3</Color>
+    <Color x:Key="MainDarkBackgroundColor">#2a1856</Color>
+    <Color x:Key="PowerContentYellowColor">#e8cf00</Color>
+    <Color x:Key="PowerContentGreenColor">#1be800</Color>
+
+    <Color x:Key="MainLightBackgroundColor2">#464448</Color>
+    <Color x:Key="MainDarkBackgroundColor2">#222224</Color>
+    <Color x:Key="PowerContentGreenColor2">#00EC97</Color>
+    <Color x:Key="PowerContentYellowColor2">#E5B537</Color>
+    <Color x:Key="PowerContentWhiteColor2">#DADADA</Color>
+
+    <Color x:Key="RadarDarkBackgroundColor">#171717</Color>
+    <Color x:Key="RadarBackgroundColor">#323232</Color>
+    <Color x:Key="RadarLightBackgroundColor">#464646</Color>
+    <Color x:Key="RadarCyanColor">#3FDCFF</Color>
+    <Color x:Key="RadarOrangeColor">#FF8A00</Color>
+    <Color x:Key="RadarRedColor">#F55050</Color>
+
+
+    <SolidColorBrush x:Key="MoreDarkPurpleColorBrush" Color="{StaticResource MoreDarkPurpleColor}"/>
+    <SolidColorBrush x:Key="DarkPurpleColorBrush" Color="{StaticResource DarkPurpleColor}"/>
+    <SolidColorBrush x:Key="PurpleColorBrush" Color="{StaticResource PurpleColor}"/>
+    <SolidColorBrush x:Key="LightPurpleColorBrush" Color="{StaticResource LightPurpleColor}"/>
+    <SolidColorBrush x:Key="MoreDarkRadarGreyColorBrush" Color="{StaticResource MoreDarkRadarGreyColor}"/>
+    <SolidColorBrush x:Key="DarkRadarGreyColorBrush" Color="{StaticResource DarkRadarGreyColor}"/>
+    <SolidColorBrush x:Key="RadarGreyColorBrush" Color="{StaticResource RadarGreyColor}"/>
+    <SolidColorBrush x:Key="ButtonBlueColorBrush" Color="{StaticResource ButtonBlueColor}"/>
+    <SolidColorBrush x:Key="ButtonPurpleColorBrush" Color="{StaticResource ButtonPurpleColor}"/>
+    <SolidColorBrush x:Key="MainLightBackgroundColorBrush" Color="{StaticResource MainLightBackgroundColor}"/>
+    <SolidColorBrush x:Key="MainDarkBackgroundColorBrush" Color="{StaticResource MainDarkBackgroundColor}"/>
+    <SolidColorBrush x:Key="PowerContentYellowColorBrush" Color="{StaticResource PowerContentYellowColor}"/>
+    <SolidColorBrush x:Key="PowerContentGreenColorBrush" Color="{StaticResource PowerContentGreenColor}"/>
+
+    <SolidColorBrush x:Key="MainLightBackgroundColorBrush2" Color="{StaticResource MainLightBackgroundColor2}"/>
+    <SolidColorBrush x:Key="MainDarkBackgroundColorBrush2" Color="{StaticResource MainDarkBackgroundColor2}"/>
+    <SolidColorBrush x:Key="PowerContentYellowColorBrush2" Color="{StaticResource PowerContentYellowColor2}"/>
+    <SolidColorBrush x:Key="PowerContentGreenColorBrush2" Color="{StaticResource PowerContentGreenColor2}"/>
+    <SolidColorBrush x:Key="PowerContentWhiteColorBrush2" Color="{StaticResource PowerContentWhiteColor2}"/>
+
+    <SolidColorBrush x:Key="RadarDarkBackgroundColorBrush" Color="{StaticResource RadarDarkBackgroundColor}"/>
+    <SolidColorBrush x:Key="RadarBackgroundColorBrush" Color="{StaticResource RadarBackgroundColor}"/>
+    <SolidColorBrush x:Key="RadarLightBackgroundColorBrush" Color="{StaticResource RadarLightBackgroundColor}"/>
+    <SolidColorBrush x:Key="RadarCyanColorBrush" Color="{StaticResource RadarCyanColor}"/>
+    <SolidColorBrush x:Key="RadarOrangeColorBrush" Color="{StaticResource RadarOrangeColor}"/>
+    <SolidColorBrush x:Key="RadarRedColorBrush" Color="{StaticResource RadarRedColor}"/>
+
+    <LinearGradientBrush x:Key="MainBackgroundGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="{StaticResource MainDarkBackgroundColor}" Offset="0.5"/>
+        <GradientStop Color="{StaticResource MainLightBackgroundColor}" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonBackgroundGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop x:Name="GradientStop1" Color="{StaticResource ButtonBlueColor}" Offset="0.1"/>
+        <GradientStop x:Name="GradientStop2" Color="{StaticResource ButtonPurpleColor}" Offset="0.9"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ButtonBackgroundMouseOverGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="{StaticResource ButtonBlueColor}" Offset="0.6"/>
+        <GradientStop Color="{StaticResource ButtonPurpleColor}" Offset="1"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="EllipseGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="{StaticResource MoreDarkPurpleColor}" Offset="0.6"/>
+        <GradientStop Color="{StaticResource MainLightBackgroundColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="MainBackgroundGradientBrush2"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="{StaticResource MainLightBackgroundColor2}" Offset="-0.5"/>
+        <GradientStop Color="{StaticResource MainDarkBackgroundColor2}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="RadarBackgroundGradientBrush"
+                         StartPoint="0,0"
+                         EndPoint="0,1">
+        <GradientStop Color="{StaticResource RadarDarkBackgroundColor}" Offset="-0.2"/>
+        <GradientStop Color="{StaticResource RadarBackgroundColor}" Offset="1"/>
+    </LinearGradientBrush>
+</ResourceDictionary>

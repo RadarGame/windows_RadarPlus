@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="RadarGame.UI.Views.MainRadarGameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RadarGame.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="300">
+    <Grid>
+        <!--<Ellipse Margin="-80,-200,-80,180"
+                 Panel.ZIndex="-10"
+                 Fill="{StaticResource EllipseGradientBrush}"
+                 Visibility="Collapsed">
+        </Ellipse>-->
+        <StackPanel Margin="0,10,0,0">
+            <Image Source="/RadarGame.Theme;component/Images/RadarLogo.png"
+                   VerticalAlignment="Top"
+                   Margin="0,10,0,0"
+                   RenderOptions.BitmapScalingMode="Fant"
+                   Width="100"
+                   HorizontalAlignment="Center"/>
+            <!--<TextBlock Text="E l e c t r o"
+                       Foreground="White"
+                       HorizontalAlignment="Center"></TextBlock>-->
+        </StackPanel>
+        <Image Source="/RadarGame.Theme;component/Images/RadarBackground2.png"
+               RenderOptions.BitmapScalingMode="Fant"
+               Stretch="Fill"
+               Height="500"
+               Width="800"
+               Opacity="1"
+               Margin="-320,-40,0,0"
+               RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <RotateTransform Angle="0"/>
+            </Image.RenderTransform>
+            <Image.Effect>
+                <BlurEffect Radius="0"></BlurEffect>
+            </Image.Effect>
+        </Image>
+            <local:ProtocolsControl DataContext="{Binding ProtocolsViewModel}"/>
+        <Border  Background="{StaticResource RadarDarkBackgroundColorBrush}"
+                 VerticalAlignment="Bottom"
+                 HorizontalAlignment="Left"
+                 Width="120"
+                 Height="40"
+                 Margin="0,0,6,0"
+                 CornerRadius="0,15,0,0">
+            
+        </Border>
+        <StackPanel VerticalAlignment="Bottom"
+                    Margin="8,0,0,5"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Left">
+            <Button Style="{StaticResource RadarButtonStyle}"
+                    VerticalContentAlignment="Center"
+                    Width="25"
+                    Height="25"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,12,0"
+                    Command="{Binding InstagramCommand}"
+                    ToolTip="Virasty">
+                <Button.Content>
+                    <Image Source="/RadarGame.Theme;component/Images/Virasty.png"
+                           VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Stretch="Uniform"
+                           Margin="5"
+                    >
+                    </Image>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource RadarButtonStyle}"
+                    Width="25"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,12,0"
+                    Command="{Binding TelegramCommand}"
+                    ToolTip="Panco">
+                <Button.Content>
+                    <Image Source="/RadarGame.Theme;component/Images/Panco.png"
+                           VerticalAlignment="Center"
+                           RenderOptions.BitmapScalingMode="Fant"
+                           Stretch="Uniform"
+                           Margin="5"
+                           >
+                    </Image>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource RadarButtonStyle}"
+                    Width="25"
+                    Height="25"
+                    VerticalContentAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    Margin="0,0,12,0"
+                    Command="{Binding ElTeamSiteCommand}"
+                    ToolTip="Contact Support">
+                <Button.Content>
+                    <Path Data="{StaticResource Site}"
+                          Stretch="Uniform"
+                          Fill="Red"
+                          Margin="5,0"></Path>
+                </Button.Content>
+            </Button>
+        </StackPanel>
+
+        <Button HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Content="بازی های تحت پوشش"
+                Padding="10,12"
+                Command="{Binding DiscordCommand}">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Foreground" Value="White"></Setter>
+
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Grid>
+                                    <Border  Background="{StaticResource RadarDarkBackgroundColorBrush}"
+                                             x:Name="bd"
+                                             CornerRadius="15,0,0,0">
+                                        <ContentPresenter Margin="{TemplateBinding Padding}"/>
+                                    </Border>
+                                    <VisualStateManager.VisualStateGroups>
+                                        <VisualStateGroup x:Name="CommonStates">
+                                            <VisualState x:Name="Normal"/>
+                                            <VisualState x:Name="Pressed">
+                                                <Storyboard>
+                                                    <DoubleAnimation Storyboard.TargetName="bd"
+                                                                     Storyboard.TargetProperty="Opacity"
+                                                                     To="0.3"
+                                                                     Duration="0:0:0.1"></DoubleAnimation>
+                                                </Storyboard>
+                                            </VisualState>
+                                        </VisualStateGroup>
+                                    </VisualStateManager.VisualStateGroups>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+    </Grid>
+</UserControl>

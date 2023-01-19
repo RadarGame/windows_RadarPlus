@@ -1,0 +1,94 @@
+﻿<Window x:Class="RadarGame.UI.Views.Authenticate.AuthenticationView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RadarGame.UI.Views.Authenticate"
+        xmlns:controls="clr-namespace:RadarGame.UI.Controls"
+        xmlns:converters="clr-namespace:RadarGame.UI.Converters"
+        mc:Ignorable="d" 
+        Style="{StaticResource BaseWindowStyle}"
+        Background="Transparent" 
+        WindowStartupLocation="CenterScreen"
+        Height="530" Width="280" 
+        ResizeMode="NoResize">
+
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="booleanToVisibilityConvertor" />
+        <converters:BooleanToVisibilityConverter  True="Collapsed" 
+        False="Visible" x:Key="reverseBooleanToVisibilityConvertor" />
+    </Window.Resources>
+
+        <Grid 
+              Background="{StaticResource MainBackgroundGradientBrush2}">
+            
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="0.4*"/>
+                <RowDefinition Height="0.7*"/>
+                <RowDefinition Height="5.3*"/>
+                <RowDefinition Height="0.4*"/>
+            </Grid.RowDefinitions>
+            <controls:HeaderControl  
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Stretch"
+                Panel.ZIndex="10"
+            />
+            <Image Source="/RadarGame.Theme;component/Images/World2.png"
+                   VerticalAlignment="Top"
+                   RenderOptions.BitmapScalingMode="Fant"
+                   Height="600"
+                   Grid.RowSpan="15"
+                   Opacity="0.2"
+                   Margin="-52,-6,-58,0"
+                   RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <RotateTransform Angle="-30"/>
+                </Image.RenderTransform>
+            </Image>
+        <Path Grid.Row="0" Data="{StaticResource ELogo}"
+                  Stretch="Uniform"
+                  Fill="White"
+                  Width="50"
+                  Margin="0,15,0,0"
+                  HorizontalAlignment="Center">
+            </Path>
+
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Text="Radar Pro" FontSize="20" Foreground="White" FontWeight="Heavy">
+            </TextBlock>
+
+            <CheckBox Grid.Row="2" VerticalAlignment="Center" x:Name="chk"
+                      HorizontalAlignment="Center"
+                      IsChecked="{Binding IsLogin, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      Style="{StaticResource LoginCheckBoxStyle}">
+            </CheckBox>
+
+            <StackPanel Grid.Row="3" >
+                <local:SignupView Visibility="{Binding IsChecked,ElementName=chk,Converter={StaticResource booleanToVisibilityConvertor}}"/>
+                <local:LoginView Visibility="{Binding IsChecked,ElementName=chk,Converter={StaticResource reverseBooleanToVisibilityConvertor}}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="4" 
+                        Orientation="Horizontal" 
+                        HorizontalAlignment="Center"
+                        Margin="0,6">
+                <TextBlock VerticalAlignment="Bottom" 
+                           Padding="10,0,0,0" 
+                           HorizontalAlignment="Center"
+                           Text="All Copyrights Reserved By" 
+                           FontSize="12" 
+                           Foreground="White" 
+                           FontWeight="Medium">
+                </TextBlock>
+                <TextBlock VerticalAlignment="Bottom"  
+                           HorizontalAlignment="Center" 
+                           Text=" Radar" 
+                           FontSize="12" 
+                           Foreground="LightBlue" 
+                           FontWeight="Medium">
+                </TextBlock>
+            </StackPanel>
+
+        </Grid>
+</Window>
