@@ -274,10 +274,6 @@
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Services\DNSService.cs" />
     <Compile Include="Services\LocalSettingsService.cs" />
-    <Compile Include="Services\OpenVPN.cs" />
-    <Compile Include="Services\PPTP.cs" />
-    <Compile Include="Services\Socks5.cs" />
-    <Compile Include="Services\Softether.cs" />
     <Compile Include="Services\VpnNetworkManager.cs" />
     <Compile Include="Services\WireGuard.cs" />
     <Compile Include="Tools\BaseModel.cs" />
@@ -296,20 +292,8 @@
     <Compile Include="Tools\RelayCommand.cs" />
     <Compile Include="Tools\SponsorJsonData.cs" />
     <Compile Include="Tools\WireguardJsons.cs" />
-    <Compile Include="ViewModels\Authenticate\AuthenticationViewModel.cs" />
-    <Compile Include="ViewModels\Authenticate\LoginViewModel.cs" />
-    <Compile Include="ViewModels\Authenticate\SignupViewModel.cs" />
     <Compile Include="ViewModels\Connections\ProtocolsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="Views\Authenticate\AuthenticationView.xaml.cs">
-      <DependentUpon>AuthenticationView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Authenticate\LoginView.xaml.cs">
-      <DependentUpon>LoginView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Authenticate\SignupView.xaml.cs">
-      <DependentUpon>SignupView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainRadarGameControl.xaml.cs">
       <DependentUpon>MainRadarGameControl.xaml</DependentUpon>
     </Compile>
@@ -332,10 +316,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Controls\MessageBoxWindowControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Controls\ProtocolSelectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -364,9 +344,6 @@
       <DependentUpon>MessageBoxWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\PowerButton.cs" />
-    <Compile Include="Controls\ProtocolSelectionControl.xaml.cs">
-      <DependentUpon>ProtocolSelectionControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Controls\WindowControl.xaml.cs">
       <DependentUpon>WindowControl.xaml</DependentUpon>
     </Compile>
@@ -379,18 +356,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\Authenticate\AuthenticationView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Authenticate\LoginView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Authenticate\SignupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\MainRadarGameControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

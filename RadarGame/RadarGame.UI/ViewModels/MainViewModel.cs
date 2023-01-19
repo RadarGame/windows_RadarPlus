@@ -16,19 +16,15 @@ namespace RadarGame.UI.ViewModels
         private NotifyIconWrapper.NotifyRequestRecord _notifyRequest;
         private bool isServiceOn;
         private bool _showInTaskbar;
-        private bool isStartup;
-        private string sponsorImageUrl;
-        private string sponsorLinkUrl;
         private readonly WindowState _windowState;
-        private string selectedService = "ٌWireGuard";
 
 
         ///Commands
         private RelayCommand notifyCommand;
-        private RelayCommand elTeamSiteCommand;
-        private RelayCommand discordCommand;
-        private RelayCommand telegramCommand;
-        private RelayCommand instagramCommand;
+        private RelayCommand contactCommand;
+        private RelayCommand siteCommand;
+        private RelayCommand pancoCommand;
+        private RelayCommand virastyCommand;
         private RelayCommand donateCommand;
         private RelayCommand sponsorCommand;
         #region Properties(Getter, Setter)
@@ -37,23 +33,17 @@ namespace RadarGame.UI.ViewModels
         public RelayCommand NotifyCommand => notifyCommand ??
                                              (notifyCommand = new RelayCommand(Notify));
 
-        public RelayCommand ElTeamSiteCommand => elTeamSiteCommand ??
-                                                 (elTeamSiteCommand = new RelayCommand(ElTeamSite));
+        public RelayCommand ContactCommand => contactCommand ??
+                                                 (contactCommand = new RelayCommand(contact));
 
-        public RelayCommand DiscordCommand => discordCommand ??
-                                              (discordCommand = new RelayCommand(Discord));
+        public RelayCommand SiteCommand => siteCommand ??
+                                              (siteCommand = new RelayCommand(site));
 
-        public RelayCommand TelegramCommand => telegramCommand ??
-                                               (telegramCommand = new RelayCommand(Telegram));
+        public RelayCommand PancoCommand => pancoCommand ??
+                                               (pancoCommand = new RelayCommand(panco));
 
-        public RelayCommand InstagramCommand => instagramCommand ??
-                                                (instagramCommand = new RelayCommand(Instagram));
-
-        public RelayCommand DonateCommand => donateCommand ??
-                                             (donateCommand = new RelayCommand(Donate));
-
-        public RelayCommand SponsorCommand => sponsorCommand ??
-                                              (sponsorCommand = new RelayCommand(Sponsor));
+        public RelayCommand VirastyCommand => virastyCommand ??
+                                                (virastyCommand = new RelayCommand(virasty));
         #endregion
 
         public ProtocolsViewModel ProtocolsViewModel => protocolsViewModel;
@@ -87,24 +77,6 @@ namespace RadarGame.UI.ViewModels
             }
         }
 
-        public string SponsorImageUrl
-        {
-            get => sponsorImageUrl;
-            set
-            {
-                sponsorImageUrl = value;
-                OnPropertyChanged();
-            }
-        }
-        public bool IsStartup
-        {
-            get => isStartup;
-            set
-            {
-                isStartup = value;
-                OnPropertyChanged();
-            }
-        }
         public NotifyIconWrapper.NotifyRequestRecord NotifyRequest
         {
             get => _notifyRequest;
@@ -128,11 +100,6 @@ namespace RadarGame.UI.ViewModels
                 }
             }
         }
-
-        public IEnumerable<string> ServicesCombo
-                => new string[] { "DNS Changer" };
-
-
 
         #endregion
         //Constructor
@@ -179,23 +146,21 @@ namespace RadarGame.UI.ViewModels
         //private void FreezeForm(bool freezeForm)
         //    => this.FormEnable = !freezeForm;
 
-        private void ElTeamSite(object obj) => Process.Start("http://www.radar.game/contact-us");
-        private void Discord(object obj) => Process.Start("http://radar.game");
+        private void contact(object obj) => Process.Start("http://www.radar.game/contact-us");
+        private void site(object obj) => Process.Start("http://radar.game");
 
-        private async void Telegram(object obj)
+        private async void panco(object obj)
         {
             var linkString = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.RadarSites);
             var link = JsonConvert.DeserializeObject<RadarSites>(linkString).panco;
             Process.Start(link);
         }
-        private async void Instagram(object obj)
+        private async void virasty(object obj)
         {
             var linkString = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.RadarSites);
             var link = JsonConvert.DeserializeObject<RadarSites>(linkString).virasty;
             Process.Start(link);
         }
-        private void Donate(object obj) => Process.Start("https://donateon.ir/MaxisAmir");
-        private void Sponsor(object obj) => Process.Start(sponsorLinkUrl);
         #endregion
 
         #endregion

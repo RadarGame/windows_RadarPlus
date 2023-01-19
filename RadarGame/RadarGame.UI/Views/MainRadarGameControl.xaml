@@ -7,11 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="300">
     <Grid>
-        <!--<Ellipse Margin="-80,-200,-80,180"
-                 Panel.ZIndex="-10"
-                 Fill="{StaticResource EllipseGradientBrush}"
-                 Visibility="Collapsed">
-        </Ellipse>-->
         <StackPanel Margin="0,10,0,0">
             <Image Source="/RadarGame.Theme;component/Images/RadarLogo.png"
                    VerticalAlignment="Top"
@@ -19,9 +14,6 @@
                    RenderOptions.BitmapScalingMode="Fant"
                    Width="100"
                    HorizontalAlignment="Center"/>
-            <!--<TextBlock Text="E l e c t r o"
-                       Foreground="White"
-                       HorizontalAlignment="Center"></TextBlock>-->
         </StackPanel>
         <Image Source="/RadarGame.Theme;component/Images/RadarBackground2.png"
                RenderOptions.BitmapScalingMode="Fant"
@@ -58,7 +50,7 @@
                     Height="25"
                     HorizontalContentAlignment="Center"
                     Margin="0,0,12,0"
-                    Command="{Binding InstagramCommand}"
+                    Command="{Binding VirastyCommand}"
                     ToolTip="Virasty">
                 <Button.Content>
                     <Image Source="/RadarGame.Theme;component/Images/Virasty.png"
@@ -76,7 +68,7 @@
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center"
                     Margin="0,0,12,0"
-                    Command="{Binding TelegramCommand}"
+                    Command="{Binding PancoCommand}"
                     ToolTip="Panco">
                 <Button.Content>
                     <Image Source="/RadarGame.Theme;component/Images/Panco.png"
@@ -94,7 +86,7 @@
                     VerticalContentAlignment="Center"
                     HorizontalContentAlignment="Center"
                     Margin="0,0,12,0"
-                    Command="{Binding ElTeamSiteCommand}"
+                    Command="{Binding ContactCommand}"
                     ToolTip="Contact Support">
                 <Button.Content>
                     <Path Data="{StaticResource Site}"
@@ -109,7 +101,7 @@
                 VerticalAlignment="Bottom"
                 Content="بازی های تحت پوشش"
                 Padding="10,12"
-                Command="{Binding DiscordCommand}">
+                Command="{Binding SiteCommand}">
             <Button.Style>
                 <Style TargetType="Button">
                     <Setter Property="Foreground" Value="White"></Setter>

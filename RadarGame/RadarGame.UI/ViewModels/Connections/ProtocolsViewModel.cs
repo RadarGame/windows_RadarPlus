@@ -19,7 +19,6 @@ namespace RadarGame.UI.ViewModels.Connections
         private bool isGettingData;
         private bool isTurnedOn;
         private bool isSliderOpen;
-        private bool isOpenVpn;
         private bool isDnsSet;
         private bool canChangeServiceType = true;
         private ServerLocation selectedLocation;
@@ -55,17 +54,6 @@ namespace RadarGame.UI.ViewModels.Connections
             set
             {
                 isSliderOpen = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public bool IsOpenVpn
-        {
-            get => isOpenVpn;
-            set
-            {
-                isOpenVpn = value;
-                ChangeModel(value ? "Wireguard" : "OpenVPN");
                 OnPropertyChanged();
             }
         }
@@ -154,7 +142,6 @@ namespace RadarGame.UI.ViewModels.Connections
             set
             {
                 isEnableToChangeService = value;
-                //FreezeForm?.Invoke(value);
                 OnPropertyChanged();
             }
 
@@ -190,7 +177,8 @@ namespace RadarGame.UI.ViewModels.Connections
             {
                 if (service == null)
                 {
-                    ChangeModel("");
+                    ProtocolType = service;
+                    this.service = serviceProvider.GetRequiredService<WireGuard>();
                 }
                 IsGettingData = true;
                 ServiceText = service.ServiceText;
@@ -230,29 +218,6 @@ namespace RadarGame.UI.ViewModels.Connections
         #region Public Methods
         public static void UnsetDnsEvent()
            => DNSService.UnsetDnsEvent();
-
-        public void ChangeModel(string service)
-        {
-            switch (service)
-            {
-                case "OpenVPN":
-                    this.service = serviceProvider.GetRequiredService<OpenVPN>();
-                    ProtocolType = service;
-                    break;
-                case "PPTP":
-                    this.service = serviceProvider.GetRequiredService<PPTP>();
-                    ProtocolType = service;
-                    break;
-                case "Wireguard":
-                    ProtocolType = service;
-                    this.service = serviceProvider.GetRequiredService<WireGuard>();
-                    break;
-                default:
-                    this.service = serviceProvider.GetRequiredService<WireGuard>();
-                    ProtocolType = "Wireguard";
-                    break;
-            }
-        }
 
         public void ConnectionObserver(bool? SuccessfullyCoonected, string serviceText)
         {
