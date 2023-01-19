@@ -20,8 +20,8 @@ namespace RadarGame.UI.ViewModels
         private string sponsorImageUrl;
         private string sponsorLinkUrl;
         private readonly WindowState _windowState;
-        private string selectedService = "OpenVpn";
-        //private bool formEnable = true;
+        private string selectedService = "ٌWireGuard";
+
 
         ///Commands
         private RelayCommand notifyCommand;
@@ -102,21 +102,6 @@ namespace RadarGame.UI.ViewModels
             set
             {
                 isStartup = value;
-                //if (isStartup)
-                //{
-                //    Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine
-                //        .OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                //    Assembly curAssembly = Assembly.GetExecutingAssembly();
-                //    key?.SetValue(curAssembly.GetName().Name, curAssembly.Location);
-                //}
-                //else
-                //{
-                //    Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.LocalMachine
-                //        .OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-                //    Assembly curAssembly = Assembly.GetExecutingAssembly();
-                //    key?.DeleteValue(curAssembly.GetName().Name);
-                //}
-
                 OnPropertyChanged();
             }
         }
@@ -145,17 +130,9 @@ namespace RadarGame.UI.ViewModels
         }
 
         public IEnumerable<string> ServicesCombo
-                => new string[] { "OpenVpn", "PPTP", "DNS Changer" };
+                => new string[] { "DNS Changer" };
 
-        //public bool FormEnable
-        //{
-        //    get => formEnable;
-        //    set
-        //    {
-        //        formEnable = value;
-        //        OnPropertyChanged();
-        //    }
-        //}
+
 
         #endregion
         //Constructor
@@ -163,8 +140,7 @@ namespace RadarGame.UI.ViewModels
         {
             this.protocolsViewModel = protocolsViewModel;
             protocolsViewModel.ServiceUpdated += ServiceUpdated;
-            //protocolsViewModel.FreezeForm += FreezeForm;
-            //_ = GetSponsorInfo();
+
         }
 
         #region Private Methods
