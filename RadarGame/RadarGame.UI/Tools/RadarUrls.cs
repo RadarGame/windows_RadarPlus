@@ -10,7 +10,7 @@ namespace RadarGame.UI.Tools
     {
         internal static readonly string PptpIp = "https://cdn.radar.game/app/vpn/radarpptp.txt";
 
-        internal static readonly string HardwareID = "http://10.202.7.211:8080/newConnection/hardwareID/PC";
+        internal static readonly string HardwareID = "server_ip"; // for security reasons must not shown in public.;
 
         internal static readonly string Route12Bat = "https://cdn.radar.game/app/vpn/routes/route12.bat";
 
