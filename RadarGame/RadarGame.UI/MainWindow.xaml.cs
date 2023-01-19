@@ -28,21 +28,6 @@ namespace RadarGame.UI
         public MainWindow()
         {
             InitializeComponent();
-            //_ = new AuthenticationViewModel();
-            //try
-            //{
-            //    string path = AppContext.BaseDirectory + @"openVPN\Batch.txt";
-            //    if (!File.Exists(path))
-            //    {
-            //        InstallTapAdapter();
-            //        File.Create(path);
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    RadarLogger.GetInstance().Logger.Error(ex);
-            //}
-            //Loaded += MainWindow_Loaded;
         }
         #region Private Methods
 
@@ -52,55 +37,7 @@ namespace RadarGame.UI
         #region Public Methods
 
         #endregion
-        public bool InstallTapAdapter()
-        {
-            bool installed = false;
-            ProcessStartInfo processInfo = null;
-            Process proc = new System.Diagnostics.Process();
-            try
-            {
-                /*
-                proc.StartInfo.FileName = AppContext.BaseDirectory+"\\openVPN\\Driver\\addtap.bat";
-                proc.StartInfo.Verb = "runas";
-                proc.StartInfo.WorkingDirectory = AppContext.BaseDirectory + "\\openVPN\\Driver";
-                proc.Start();
-                */
-                string str = proc.StandardOutput.ReadToEnd();
-                string err = proc.StandardError.ReadToEnd();
-                int exitCode = proc.ExitCode;
-
-                if (err.Length > 0)
-                    throw new Exception(err);
-
-                // Write into logs
-                RadarLogger.GetInstance().Logger.Info("COMPLETED Installing tap Exit code = " + exitCode);
-
-                if (str.IndexOf("Drivers installed successfully") > -1)
-
-                {
-                    installed = true;
-                    // Write into logs  
-                    RadarLogger.GetInstance().Logger.Info("Tap Adapter Installed Successfully");
-                }
-                // Write into logs
-                RadarLogger.GetInstance().Logger.Info("Finished TAP");
-            }
-            catch (Exception e)
-            {
-                // Write into logs
-                RadarLogger.GetInstance().Logger.Error("Error Installing Tap Adapter : " + e.Message);
-            }
-            finally
-            {
-                processInfo = null;
-                if (proc != null)
-                {
-                    proc.Close();
-                    proc = null;
-                }
-            }
-            return installed;
-        }
+      
         private async Task GetDnsAddress()
         {
             NetworkInterface networkInterface = await GetActiveEthernetOrWifiNetworkInterface();
