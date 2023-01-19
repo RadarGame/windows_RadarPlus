@@ -127,10 +127,8 @@ namespace RadarGame.UI.Services
         }
         private async Task<ProcessStartInfo> getWireGuardInfo()
         {
-            //TODO: After server updated this must change to get location.
-            //var region = Enum.GetName(typeof(ServerLocation), connectionObserver.GetVpnRegion());
-            //region = region.ToLower();
-            var region = "tehran";
+            var region = Enum.GetName(typeof(ServerLocation), connectionObserver.GetVpnRegion());
+            region = region.ToLower();
             await checkPrivateInfos(region);
             var publicProfileString = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.VpnRegionPublicInfo(region));
             var publicProfile = JsonConvert.DeserializeObject<WireguardJsons.PublicInfo>(publicProfileString);
