@@ -91,10 +91,7 @@ namespace RadarGame.UI
             serviceCollection.AddSingleton<ProtocolsViewModel>();
             serviceCollection.AddSingleton<IConnectionObserver>(s => s.GetRequiredService<ProtocolsViewModel>());
             serviceCollection.AddSingleton<VpnNetworkManager>();
-            serviceCollection.AddSingleton<PPTP>();
-            serviceCollection.AddSingleton<OpenVPN>();
             serviceCollection.AddSingleton<WireGuard>();
-
             serviceCollection.AddScoped<MainViewModel>();
             serviceCollection.AddScoped<MainWindow>();
 
@@ -103,20 +100,10 @@ namespace RadarGame.UI
         }
         private async void Application_Exit(object sender, ExitEventArgs e)
         {
-            // Creating thread
-            // Using thread class
-            //Thread thr = new Thread(new ThreadStart(ProtocolsViewModel.UnsetDnsEvent));
-            //thr.Start();
-            // ProtocolsViewModel.UnsetDnsEvent();
 
             var dnsService = serviceProvider.GetRequiredService<IDNSService>();
             var wireguardService = serviceProvider.GetRequiredService<WireGuard>();
             await dnsService.UnsetDNS();
-            var openVpnProcess = Process.GetProcesses().
-                Where(pr => pr.ProcessName == "openvpn");
-
-            foreach (var process in openVpnProcess)
-                process.Kill();
 
             wireguardService.Dispose();
         }
