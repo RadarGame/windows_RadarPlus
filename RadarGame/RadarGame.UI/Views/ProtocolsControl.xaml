@@ -19,38 +19,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <!--<CheckBox Grid.Row="1"
-                      x:Name="ProtocolSliderBox"
-                      IsChecked="{Binding IsSliderOpen}"
-                      IsEnabled="{Binding IsEnableToChangeService}"
-                      Style="{StaticResource ProtocolsCheckBoxStyle}"></CheckBox>-->
-            <!--<controls:ProtocolSelectionControl Grid.Row="1"
-                                               Width="50"
-                                               Height="162"
-                                               VerticalAlignment="Top"
-                                               HorizontalAlignment="Left"
-                                               SoftEtherCommand="{Binding ChangeProtocolCommand}"
-                                               OpenVPNCommand="{Binding ChangeProtocolCommand}"
-                                               PPTPCommand="{Binding ChangeProtocolCommand}"
-                                               IsEnabled="{Binding ElementName=ProtocolSliderBox, Path=IsChecked}"
-                                               Style="{StaticResource LeftSlidingControlStyle}"
-                                               Grid.RowSpan="10"></controls:ProtocolSelectionControl>
-            <Path Grid.Row="1"
-                  VerticalAlignment="Center"
-                  HorizontalAlignment="Center"
-                  Fill="White"
-                  Stretch="Uniform"
-                  Height="30"
-                  Width="30"
-                  Data="{Binding ProtocolType, Converter={StaticResource ProtocolTypeToIconConverter}}"></Path>-->
-            <!--<CheckBox IsEnabled="{Binding IsEnableToChangeService , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Grid.Row="5"
-                      VerticalAlignment="Center"
-                      HorizontalAlignment="Center"
-                      Margin="0,0,0,0"
-                      IsHitTestVisible="{Binding CanChangeServiceType}"
-                      IsChecked="{Binding IsOpenVpn, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                      Style="{StaticResource RadarProtocolCheckBoxStyle}"></CheckBox>-->
+          
             <CheckBox 
                 Grid.Row="5"
                 Margin="-3,0,0,0"
