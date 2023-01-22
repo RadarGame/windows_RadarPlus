@@ -58,12 +58,7 @@ namespace RadarGame.UI
             config.AddRule(NLog.LogLevel.Trace, NLog.LogLevel.Fatal, logfile);
             NLog.LogManager.Configuration = config;
 
-            var runningInstances = System.Diagnostics.Process.GetProcessesByName(
-                    System.Diagnostics.Process.GetCurrentProcess().ProcessName);
-            if (runningInstances.Length > 1)
-            {
-                Environment.Exit(0);
-            }
+
 
             var serviceProvider = configureServices();
             this.serviceProvider = serviceProvider;
