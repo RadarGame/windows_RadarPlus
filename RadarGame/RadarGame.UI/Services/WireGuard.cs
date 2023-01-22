@@ -132,7 +132,15 @@ namespace RadarGame.UI.Services
             await checkPrivateInfos(region);
             var publicProfileString = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.VpnRegionPublicInfo(region));
             var publicProfile = JsonConvert.DeserializeObject<WireguardJsons.PublicInfo>(publicProfileString);
-            await generateConfig(publicProfile, region);
+            var routesjson = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.RadarRoutes);
+            var Routes = JsonConvert.DeserializeObject<WireguardJsons.Routes>(routesjson);
+            string routedata = "";
+            Routes.routes.ToArray();
+            foreach (string i in Routes.routes)
+            {
+                routedata += i + ",";
+            }
+            await generateConfig(routedata, publicProfile, region);
             string arguments = "/installtunnelservice " + configFile;
             ProcessStartInfo wireGuardInfo = new ProcessStartInfo
             {
@@ -185,7 +193,7 @@ namespace RadarGame.UI.Services
             }
         }
 
-        private async Task generateConfig(WireguardJsons.PublicInfo wgPublic, string region)
+        private async Task generateConfig(string Routes ,WireguardJsons.PublicInfo wgPublic, string region)
         {
             try
             {
@@ -194,7 +202,7 @@ namespace RadarGame.UI.Services
             catch { }
 
             var privateRegionInfo = settingsService.Current.RegionPrivateInfos.FirstOrDefault(s => s.region == region);
-            var config = $"[Interface]\nPrivateKey = {privateRegionInfo.private_key}\nAddress = {privateRegionInfo.ip}\nDNS = {wgPublic.dns}\n\n[Peer]\nPublicKey = {wgPublic.publickey}\nPresharedKey =  {privateRegionInfo.psk}\nEndpoint = {wgPublic.endpoint}\nAllowedIPs = {wgPublic.routes}";
+            var config = $"[Interface]\nPrivateKey = {privateRegionInfo.private_key}\nAddress = {privateRegionInfo.ip}\nDNS = {wgPublic.dns}\n\n[Peer]\nPublicKey = {wgPublic.publickey}\nPresharedKey =  {privateRegionInfo.psk}\nEndpoint = {wgPublic.endpoint}\nAllowedIPs = {Routes + wgPublic.routes }";
             using (var configurationFile = File.Open(configFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
                 var configBytes = Encoding.UTF8.GetBytes(config);
