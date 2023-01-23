@@ -215,7 +215,7 @@ namespace RadarGame.UI.Services
         {
             bool pingable = false;
             Ping pinger = null;
-
+            pinger = new Ping();
             try
             {
                 for (int i = 0; i < 5; i++)
@@ -224,7 +224,7 @@ namespace RadarGame.UI.Services
                     {
                         return false;
                     }
-                    pinger = new Ping();
+                    
                     PingReply reply = pinger.Send(nameOrAddress);
                     if (reply.Status == IPStatus.Success)
                     {
@@ -249,18 +249,21 @@ namespace RadarGame.UI.Services
 
         public async Task connectionChecker(string nameOrAddress, CancellationToken token)
         {
-            Ping pinger = null;
+            Ping pinger = new Ping();
             int timeoutCounter = 0;
+            int PingCounter = 0;
             try
             {
                 while (true)
                 {
+                    //Adjust task.delay time according to spec of servers and amount of active users | Dont DDOS servers
+                    await Task.Delay(1000);
                     if (token.IsCancellationRequested)
                     {
                         return;
                     }
-                    pinger = new Ping();
-                    PingReply reply = pinger.Send(nameOrAddress);
+                    
+                    PingReply reply = pinger.Send(nameOrAddress,2000);
                     if (reply.Status != IPStatus.Success)
                     {
                         timeoutCounter++;
@@ -269,12 +272,14 @@ namespace RadarGame.UI.Services
                     {
                         timeoutCounter = 0;
                     }
-
-                    if (timeoutCounter == 4)
+                    PingTimer++;
+                    if (timeoutCounter == 3)
                     {
                         await Dispose();
                         return;
                     }
+                    //Adjust task.delay time according to spec of servers and amount of active users
+                    if (timeoutCounter==0 && PingTimer == 3) { PingTimer = 0; await Task.Delay(10000);}
                 }
             }
             catch (PingException e)
