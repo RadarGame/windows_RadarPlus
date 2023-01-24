@@ -56,7 +56,7 @@ namespace RadarGame.UI.Services
                 {
                     await vpnNetworkManager.ChangeInterfaceMetric(true);
                     connectionObserver.ConnectionObserver(true, "وصل");
-                    vpnNetworkManager.StartVpnConnectionObserver();
+                    //vpnNetworkManager.StartVpnConnectionObserver();
                     string deviceId = new DeviceIdBuilder().AddMacAddress().AddUserName().ToString();
                     // Provided way to count individual users via connecting.
                     Task.Factory.StartNew(() =>
@@ -275,6 +275,8 @@ namespace RadarGame.UI.Services
                     PingTimer++;
                     if (timeoutCounter == 3)
                     {
+                        // leave it there if its important if its not remove it Because of optimization
+                        vpnNetworkManager.StartVpnConnectionObserver();
                         await Dispose();
                         return;
                     }
