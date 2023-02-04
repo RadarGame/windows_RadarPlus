@@ -67,14 +67,29 @@ namespace RadarGame.UI
 
         private void initServices(IServiceProvider serviceProvider)
         {
+            Task.Run(() => MemoryCleaner());
             var settingsService = serviceProvider.GetRequiredService<ISettingsService>();
             settingsService.LoadAsync();
             var mainWindow = serviceProvider.GetRequiredService<MainWindow>();
             Current.MainWindow = mainWindow;
-
             mainWindow.DataContext = serviceProvider.GetRequiredService<MainViewModel>();
 
             mainWindow.Show();
+        }
+        public async Task MemoryCleaner()
+        {
+            while (true)
+            {
+                MinimizeMemoryFootprint();
+                Thread.Sleep(6000);
+            }
+        }
+        [DllImport("psapi.dll")]
+        static extern int EmptyWorkingSet(IntPtr hwProc);
+
+        static void MinimizeMemoryFootprint()
+        {
+            EmptyWorkingSet(Process.GetCurrentProcess().Handle);
         }
 
 
