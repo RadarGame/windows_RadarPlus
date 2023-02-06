@@ -251,37 +251,37 @@ namespace RadarGame.UI.Services
         {
             Ping pinger = new Ping();
             int timeoutCounter = 0;
-            int PingCounter = 0;
+            int PingTimer = 0;
             try
             {
                 while (true)
                 {
                     //Adjust task.delay time according to spec of servers and amount of active users | Dont DDOS servers
-                    await Task.Delay(1000);
+                    Thread.Sleep(1000);
                     if (token.IsCancellationRequested)
                     {
                         return;
                     }
                     
-                    PingReply reply = pinger.Send(nameOrAddress,2000);
-                    if (reply.Status != IPStatus.Success)
-                    {
-                        timeoutCounter++;
-                    }
-                    else if (reply.Status == IPStatus.Success)
+                    PingReply reply = pinger.Send(nameOrAddress,1000);
+                    if (reply.Status == IPStatus.Success)
                     {
                         timeoutCounter = 0;
                     }
+                    else if (reply.Status != IPStatus.Success)
+                    {
+                        timeoutCounter++;
+                    }
                     PingTimer++;
+                    if (timeoutCounter == 1) { vpnNetworkManager.StartVpnConnectionObserver(); }
                     if (timeoutCounter == 3)
                     {
-                        // leave it there if its important if its not remove it Because of optimization
-                        vpnNetworkManager.StartVpnConnectionObserver();
+                        //vpnNetworkManager.StartVpnConnectionObserver();
                         await Dispose();
                         return;
                     }
                     //Adjust task.delay time according to spec of servers and amount of active users
-                    if (timeoutCounter==0 && PingTimer == 3) { PingTimer = 0; await Task.Delay(10000);}
+                    if (timeoutCounter==0 && PingTimer == 3) { PingTimer = 0; Thread.Sleep(5000);}
                 }
             }
             catch (PingException e)
