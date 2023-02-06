@@ -251,7 +251,7 @@ namespace RadarGame.UI.Services
         {
             Ping pinger = new Ping();
             int timeoutCounter = 0;
-            int PingTimer = 0;
+            int PingCounter = 0;
             try
             {
                 while (true)
@@ -272,7 +272,7 @@ namespace RadarGame.UI.Services
                     {
                         timeoutCounter++;
                     }
-                    PingTimer++;
+                    PingCounter++;
                     if (timeoutCounter == 1) { vpnNetworkManager.StartVpnConnectionObserver(); }
                     if (timeoutCounter == 3)
                     {
@@ -281,7 +281,7 @@ namespace RadarGame.UI.Services
                         return;
                     }
                     //Adjust task.delay time according to spec of servers and amount of active users
-                    if (timeoutCounter==0 && PingTimer == 3) { PingTimer = 0; Thread.Sleep(5000);}
+                    if (timeoutCounter==0 && PingCounter >= 3) { PingCounter = 0; Thread.Sleep(5000);}
                 }
             }
             catch (PingException e)
