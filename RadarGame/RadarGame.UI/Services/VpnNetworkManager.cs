@@ -25,12 +25,13 @@ namespace RadarGame.UI.Services
         }
         public void StartVpnConnectionObserver()
         {
-            timer = new Timer(checkConnection, null, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
+            checkConnection( null);
+            //timer = new Timer(, TimeSpan.FromSeconds(5), TimeSpan.FromSeconds(5));
         }
 
         public void StopVpnConnectionObserver()
         {
-            timer?.Change(Timeout.Infinite, Timeout.Infinite);
+            //timer?.Change(Timeout.Infinite, Timeout.Infinite);
             if (timer != null)
             {
                 timer.Dispose();
@@ -133,7 +134,7 @@ namespace RadarGame.UI.Services
             var Nic = GetVpnNetworkInterface();
             if (Nic == null)
             {
-                timer?.Change(Timeout.Infinite, Timeout.Infinite);
+                //timer?.Change(Timeout.Infinite, Timeout.Infinite);
                 if (timer != null)
                 {
                     timer.Dispose();

@@ -26,6 +26,10 @@ namespace RadarGame.UI.Tools
             public string dns { get; set; }
             public string routes { get; set; }
         }
+        public class Routes
+        {
+            public List<string> routes { get; set; }
 
+        }
     }
 }

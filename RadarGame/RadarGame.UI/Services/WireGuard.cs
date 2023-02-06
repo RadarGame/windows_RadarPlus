@@ -56,7 +56,7 @@ namespace RadarGame.UI.Services
                 {
                     await vpnNetworkManager.ChangeInterfaceMetric(true);
                     connectionObserver.ConnectionObserver(true, "وصل");
-                    vpnNetworkManager.StartVpnConnectionObserver();
+                    //vpnNetworkManager.StartVpnConnectionObserver();
                     string deviceId = new DeviceIdBuilder().AddMacAddress().AddUserName().ToString();
                     // Provided way to count individual users via connecting.
                     Task.Factory.StartNew(() =>
@@ -132,7 +132,15 @@ namespace RadarGame.UI.Services
             await checkPrivateInfos(region);
             var publicProfileString = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.VpnRegionPublicInfo(region));
             var publicProfile = JsonConvert.DeserializeObject<WireguardJsons.PublicInfo>(publicProfileString);
-            await generateConfig(publicProfile, region);
+            var routesjson = await RadarHttpClient.GetInstance().Client.GetStringAsync(RadarUrls.RadarRoutes);
+            var Routes = JsonConvert.DeserializeObject<WireguardJsons.Routes>(routesjson);
+            string routedata = "";
+            Routes.routes.ToArray();
+            foreach (string i in Routes.routes)
+            {
+                routedata += i + ",";
+            }
+            await generateConfig(routedata, publicProfile, region);
             string arguments = "/installtunnelservice " + configFile;
             ProcessStartInfo wireGuardInfo = new ProcessStartInfo
             {
@@ -185,7 +193,7 @@ namespace RadarGame.UI.Services
             }
         }
 
-        private async Task generateConfig(WireguardJsons.PublicInfo wgPublic, string region)
+        private async Task generateConfig(string Routes ,WireguardJsons.PublicInfo wgPublic, string region)
         {
             try
             {
@@ -194,7 +202,7 @@ namespace RadarGame.UI.Services
             catch { }
 
             var privateRegionInfo = settingsService.Current.RegionPrivateInfos.FirstOrDefault(s => s.region == region);
-            var config = $"[Interface]\nPrivateKey = {privateRegionInfo.private_key}\nAddress = {privateRegionInfo.ip}\nDNS = {wgPublic.dns}\n\n[Peer]\nPublicKey = {wgPublic.publickey}\nPresharedKey =  {privateRegionInfo.psk}\nEndpoint = {wgPublic.endpoint}\nAllowedIPs = {wgPublic.routes}";
+            var config = $"[Interface]\nPrivateKey = {privateRegionInfo.private_key}\nAddress = {privateRegionInfo.ip}\nDNS = {wgPublic.dns}\n\n[Peer]\nPublicKey = {wgPublic.publickey}\nPresharedKey =  {privateRegionInfo.psk}\nEndpoint = {wgPublic.endpoint}\nAllowedIPs = {Routes + wgPublic.routes }";
             using (var configurationFile = File.Open(configFile, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite))
             {
                 var configBytes = Encoding.UTF8.GetBytes(config);
@@ -207,7 +215,7 @@ namespace RadarGame.UI.Services
         {
             bool pingable = false;
             Ping pinger = null;
-
+            pinger = new Ping();
             try
             {
                 for (int i = 0; i < 5; i++)
@@ -216,7 +224,7 @@ namespace RadarGame.UI.Services
                     {
                         return false;
                     }
-                    pinger = new Ping();
+                    
                     PingReply reply = pinger.Send(nameOrAddress);
                     if (reply.Status == IPStatus.Success)
                     {
@@ -241,32 +249,39 @@ namespace RadarGame.UI.Services
 
         public async Task connectionChecker(string nameOrAddress, CancellationToken token)
         {
-            Ping pinger = null;
+            Ping pinger = new Ping();
             int timeoutCounter = 0;
+            int PingCounter = 0;
             try
             {
                 while (true)
                 {
+                    //Adjust task.delay time according to spec of servers and amount of active users | Dont DDOS servers
+                    Thread.Sleep(1000);
                     if (token.IsCancellationRequested)
                     {
                         return;
                     }
-                    pinger = new Ping();
-                    PingReply reply = pinger.Send(nameOrAddress);
-                    if (reply.Status != IPStatus.Success)
-                    {
-                        timeoutCounter++;
-                    }
-                    else if (reply.Status == IPStatus.Success)
+                    
+                    PingReply reply = pinger.Send(nameOrAddress,1000);
+                    if (reply.Status == IPStatus.Success)
                     {
                         timeoutCounter = 0;
                     }
-
-                    if (timeoutCounter == 4)
+                    else if (reply.Status != IPStatus.Success)
                     {
+                        timeoutCounter++;
+                    }
+                    PingCounter++;
+                    if (timeoutCounter == 1) { vpnNetworkManager.StartVpnConnectionObserver(); }
+                    if (timeoutCounter == 3)
+                    {
+                        //vpnNetworkManager.StartVpnConnectionObserver();
                         await Dispose();
                         return;
                     }
+                    //Adjust task.delay time according to spec of servers and amount of active users
+                    if (timeoutCounter==0 && PingCounter >= 3) { PingCounter = 0; Thread.Sleep(5000);}
                 }
             }
             catch (PingException e)
